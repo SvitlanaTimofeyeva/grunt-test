@@ -32,6 +32,9 @@ module.exports = function(grunt) {
 		clean: {
 			command: 'del app.js', 
 			cwd: 'src'
+		}, 
+		loadModules: {
+			command: 'npm install'
 		}
 	}
 
@@ -42,6 +45,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-exec'); 
 
-  grunt.registerTask('default', ['browserify', 'uglify', 'exec:clean']);
+  grunt.registerTask('init', ['exec: loadModules']); 
+  grunt.registerTask('build', ['browserify', 'uglify', 'exec:clean']);
 
 };
